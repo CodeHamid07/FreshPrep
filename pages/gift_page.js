@@ -49,6 +49,11 @@ export class GiftPage {
 
   }
 
+  async enterCountry(){
+    const frames = this.page.frameLocator('iframe[name^="__privateStripeFrame"]');
+    await frames.nth(0).locator(giftLocators.selectCountry).selectOption({ value: 'IN' });
+  }
+
    async continueToPayment(){
     await this.page.locator(giftLocators.continueButton).click();
   }

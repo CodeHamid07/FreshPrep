@@ -24,6 +24,7 @@ test('TC-01 Purchase valid gift card with email delivery and now option', async 
     giftCardInfo.validCard.expiryDate, 
     giftCardInfo.validCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertGiftCardConfirmationMessage(giftCardInfo.giftAmount, giftCardInfo.orderConfimationMessage);
 });
@@ -43,6 +44,7 @@ test('TC-02 Purchase valid gift card with email delivery and later option', asyn
     giftCardInfo.validCard.expiryDate, 
     giftCardInfo.validCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertGiftCardConfirmationMessage(giftCardInfo.giftAmount, giftCardInfo.orderConfimationMessage);
 });
@@ -60,6 +62,7 @@ test('TC-03 Purchase valid gift card with print delivery option', async ({ page 
     giftCardInfo.validCard.expiryDate, 
     giftCardInfo.validCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertGiftCardConfirmationMessage(giftCardInfo.giftAmount, giftCardInfo.orderConfimationMessage);
 });
@@ -131,6 +134,7 @@ test('TC-10 Negative - Enter lost card number and validate warning text', async 
     giftCardInfo.validCard.expiryDate, 
     giftCardInfo.validCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertCardWarning(giftCardInfo.cardWarningMessages.lostCard);
 });
@@ -149,6 +153,7 @@ test('TC-11 Negative - Enter insufficient balance card number and validate warni
     giftCardInfo.validCard.expiryDate, 
     giftCardInfo.validCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertCardWarning(giftCardInfo.cardWarningMessages.insufficientFunds);
 });
@@ -166,6 +171,7 @@ test('TC-12 Negative - Enter invalid expiry date and validate warning text', asy
     giftCardInfo.invalidCard.expiryDate, 
     giftCardInfo.validCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertCardDateWarning(giftCardInfo.cardWarningMessages.cardExpiry);
 });
@@ -184,6 +190,7 @@ test('TC-13 Negative - Enter invalid CVV number and validate warning text', asyn
     giftCardInfo.validCard.expiryDate, 
     giftCardInfo.invalidCard.cvv
 );
+await giftPage.enterCountry();
     await giftPage.clickPurchaseButton();
     await giftPage.assertCardCvvWarning(giftCardInfo.cardWarningMessages.cardCvv);
 });

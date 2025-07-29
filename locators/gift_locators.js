@@ -25,5 +25,7 @@ export const giftLocators = {
     cardNumberWarning: `#Field-numberError`,
     cardExpiryWarning: `#Field-expiryError`,
     cardCvvWarning: `#Field-cvcError`,
+    selectCountry: `#Field-countryInput`,
+    indiaText: `//option[@value="IN"]`,
   };
   
