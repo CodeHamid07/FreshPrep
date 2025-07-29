@@ -1,0 +1,44 @@
+name: Scheduled Playwright Tests
+
+on:
+  schedule:
+    # 10:00 AM IST (UTC +5:30 → 04:30 UTC)
+    - cron: '30 4 * * *'
+    # 3:00 PM IST → 09:30 UTC
+    - cron: '30 9 * * *'
+    # 7:00 PM IST → 13:30 UTC
+    - cron: '30 13 * * *'
+  workflow_dispatch: # also allows manual triggering from GitHub UI
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Tests
+        run: npx playwright test
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: reports/
